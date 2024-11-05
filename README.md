@@ -85,7 +85,7 @@ Are shared through a secure method.
 ### Running program
 * The program will run automatically on boot. You can check the status of the systemd service with following command:
   ```
-  sudo systemctl satus boats.service
+  sudo systemctl status boats.service
   ```
 
 ## What about maintenance?
