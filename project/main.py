@@ -21,18 +21,18 @@ pic_config = camera.create_still_configuration() #use default config, it already
 camera.start() #initialize camera
 
 #import the model
-model=YOLO("/home/Captain/project/best_cross_val.pt")
+model=YOLO("/home/Captain/project/best.pt")
 
 #make a counter function from the results of the model
 def count_values(arr):
-    counts = np.bincount(arr, None, 4) #np bincount is the most efficient counter in Python
-    form_str = "S{},M{},P{}".format(counts[1], counts[2], counts[3]) #string formatting for easy data extraction 
+    counts = np.bincount(arr, None, 5) #np bincount is the most efficient counter in Python
+    form_str = "J{},K{},L{},P{},S{}".format(counts[0], counts[1], counts[2], counts[3], counts[4]) #string formatting for easy data extraction 
     return form_str
 
 #main event loop
 while True:
     frame = camera.capture_array("main") #read camera as np array, use main configuration
-    results = model.predict(source=frame, imgsz=640, conf=0.5, classes=[1,2,3]) #use model on the captured frame
+    results = model.predict(source=frame, imgsz=640, conf=0.4, classes=[0,1,2,3,4]) #use model on the captured frame
     class_ids=np.zeros(1, dtype=np.int64) #create an empty array to store detected class IDs
     for result in results:
         boxes = result.boxes.cpu().numpy() #translate Tensors to numpy arrays, make sure to use CPU
