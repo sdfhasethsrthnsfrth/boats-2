@@ -38,7 +38,7 @@ send_command("CAPPKEY=528370A16B76AD2475E1BA621DAA5BCC") #32 byte address
 print(wait_response(ser, 1))
 #This should return: "OK"
 
-#manually set APPKEY to what Digita network expects
+#manually set DEVADDR to what Digita network expects
 send_command("CDEVADDR=5428A0DA") #16 byte address
 print(wait_response(ser, 1))
 #This should return: "OK"
